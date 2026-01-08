@@ -1,9 +1,3 @@
-/**
- * Game Engine Service
- * Core server-side logic for story progression, voting, and outcome evaluation.
- * Moved from bot/src/engine/outcome-engine.ts
- */
-
 import { prisma } from "../lib/prisma.js";
 import * as storyService from "./story.service.js";
 
