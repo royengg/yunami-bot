@@ -59,7 +59,7 @@ export async function execute(interaction: any) {
   
   const episodes = storyGraph
     .listEpisodes()
-    .filter((ep: any) => ep.id !== 'prologue_1');
+    .filter((ep: any) => ep.id === 'midnight_pact_3p');
   
   if (episodes.length === 0) {
     await interaction.editReply({
