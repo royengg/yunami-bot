@@ -12,13 +12,12 @@
       "schema_version": 1,
       "type": "narrative",
       "title": "The Bayou",
-      "tags": [
-        "intro",
-        "all-players"
-      ],
+      "tags": ["intro", "all-players"],
       "public_embed": {
         "title": "🐊 The Hunting Lodge",
         "description": "Louisiana. The air is thick enough to drown in. It smells of rot, sulfur, and cheap bourbon.\n\nYou've all returned to the scene of the crime. The Blackwood Hunting Lodge.\n\n**The Detective** swirls his flask. He buried the evidence here 15 years ago.\n**The Scholar** adjusts their glasses. They know the ritual was real.\n**The Criminal** cracks his knuckles. He remembers the violence. He liked it.\n\nA single cassette tape sits on the table.",
+        
+        "captionOfImage": "A decrepit wooden hunting lodge sinking into a swamp, spanish moss hanging from dead cypress trees, thick fog, sepia tone, gritty cinematic texture",
         "footer": "All players present"
       },
       "type_specific": {
@@ -30,17 +29,18 @@
         "min_player_count": 3
       }
     },
+
     "tape_listening": {
       "id": "tape_listening",
       "schema_version": 1,
       "type": "narrative",
       "title": "The Binding",
-      "tags": [
-        "narrative"
-      ],
+      "tags": ["narrative"],
       "public_embed": {
         "title": "📼 The Recording",
         "description": "You press play. Statistical hiss, then a voice. *Your* voice, from 15 years ago.\n\n*\"We do this together. We bleed the King, we bury the bodies, and we never speak of it again.\"*\n\nThe tape clicks off.\n\nSomeone broke the pact. Someone talked.",
+      
+        "captionOfImage": "Close up of an old dusty cassette player on a scarred wooden table, flies buzzing around it, high contrast noir lighting",
         "footer": "Paranoia sets in"
       },
       "type_specific": {
@@ -49,23 +49,21 @@
         }
       }
     },
+
     "paranoia_dms": {
       "id": "paranoia_dms",
       "schema_version": 1,
       "type": "dm",
       "title": "Seeds of Doubt",
-      "tags": [
-        "private",
-        "paranoia"
-      ],
+      "tags": ["private", "paranoia"],
       "public_embed": {
         "title": "📱 Silent Vibrations",
         "description": "Phones light up in pockets. Private messages. Accusations.\n\nLook at your teammates. Who looks guilty?",
+        "image": "suspicious_glances.png",
+        "captionOfImage": "Three people sitting in a dark room looking at each other with suspicion, dramatic shadows obscuring their eyes",
         "footer": "Check your DMs"
       },
-      "side_effects_on_enter": {
-        "spawn_dm_jobs": true
-      },
+      "side_effects_on_enter": { "spawn_dm_jobs": true },
       "type_specific": {
         "dm_deliveries": [
           {
@@ -87,22 +85,21 @@
             }
           }
         ],
-        "extra_data": {
-          "nextNodeId": "split_investigation"
-        }
+        "extra_data": { "nextNodeId": "split_investigation" }
       }
     },
+
     "split_investigation": {
       "id": "split_investigation",
       "schema_version": 1,
       "type": "arc_split",
       "title": "Sanitization",
-      "tags": [
-        "arc-split"
-      ],
+      "tags": ["arc-split"],
       "public_embed": {
         "title": "🧹 Cleaning House",
         "description": "You can't trust each other, but you have work to do. The scene must be scrubbed.\n\n**Team Woods (Criminal):** Go burn the old ritual effigies.\n**Team Archives (Detective & Scholar):** Go to the basement. Destroy the records.",
+        "image": "split_paths_bayou.png",
+        "captionOfImage": "Two paths diverging in a swamp, one leading into dark dense woods, the other leading down into a concrete storm cellar",
         "fields": [
           {
             "name": "🌲 The Woods",
@@ -125,9 +122,7 @@
               "description": "Burn the evidence",
               "player_count": 1,
               "entry_node_id": "woods_entry",
-              "required_roles": [
-                "criminal"
-              ]
+              "required_roles": ["criminal"]
             },
             {
               "id": "arc_basement",
@@ -135,46 +130,41 @@
               "description": "Destroy the records",
               "player_count": 2,
               "entry_node_id": "woods_entry",
-              "required_roles": [
-                "detective",
-                "scholar"
-              ]
+              "required_roles": ["detective", "scholar"]
             }
           ]
         }
       }
     },
+
     "woods_entry": {
       "id": "woods_entry",
       "schema_version": 1,
       "type": "narrative",
       "title": "The Effigies",
-      "tags": [
-        "arc-woods",
-        "shared-view"
-      ],
+      "tags": ["arc-woods", "shared-view"],
       "public_embed": {
         "title": "🌲 The Sticks",
-        "description": "The group watches as the **Criminal** heads into the tree line alone.\n\nThe woods are silent. Too silent.\n\nHe finds the effigies. Stick figures made of driftwood and bone.\n\nWait. One of them is wearing a tie. **The Detective's tie.**\n\n\"Someone's been watching us,\" the Criminal grunts."
+        "description": "The group watches as the **Criminal** heads into the tree line alone.\n\nThe woods are silent. Too silent.\n\nHe finds the effigies. Stick figures made of driftwood and bone.\n\nWait. One of them is wearing a tie. **The Detective's tie.**\n\n\"Someone's been watching us,\" the Criminal grunts.",
+        "image": "stick_effigies.png",
+        "captionOfImage": "Creepy stick figures hanging from trees in a swamp, wearing modern clothing, fog swirling"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "woods_action"
-        }
+        "extra_data": { "nextNodeId": "woods_action" }
       }
     },
+
     "woods_action": {
       "id": "woods_action",
       "schema_version": 1,
       "type": "choice",
       "title": "Burn It",
-      "tags": [
-        "arc-woods",
-        "shared-view"
-      ],
+      "tags": ["arc-woods", "shared-view"],
       "public_embed": {
         "title": "🔥 Fire and Dirt",
         "description": "He needs to burn them. But he spots fresh disturbed earth nearby. Shaped like a shallow grave.\n\nIt matches the spot where you buried the girl 15 years ago.",
+        "image": "shovel_mud.png",
+        "captionOfImage": "A rusty shovel blade covered in fresh mud, pointed at the camera, tense confrontation",
         "footer": "Criminal must choose"
       },
       "type_specific": {
@@ -184,9 +174,7 @@
             "label": "Dig it up (Check for bodies)",
             "emoji": "⚰️",
             "style": 4,
-            "allowed_roles": [
-              "criminal"
-            ],
+            "allowed_roles": ["criminal"],
             "nextNodeId": "woods_dig"
           },
           {
@@ -194,81 +182,75 @@
             "label": "Ignore it and burn the sticks",
             "emoji": "🔥",
             "style": 1,
-            "allowed_roles": [
-              "criminal"
-            ],
+            "allowed_roles": ["criminal"],
             "nextNodeId": "woods_burn"
           }
         ]
       }
     },
+
     "woods_dig": {
       "id": "woods_dig",
       "schema_version": 1,
       "type": "narrative",
       "title": "Empty Grave",
-      "tags": [
-        "arc-woods"
-      ],
+      "tags": ["arc-woods"],
       "public_embed": {
         "title": "🕳️ Empty",
-        "description": "He digs. Sweating. Panting.\n\nThe hole is empty.\n\nThe body is gone. Or someone moved it.\n\n*The scene shifts to the basement...*"
+        "description": "He digs. Sweating. Panting.\n\nThe hole is empty.\n\nThe body is gone. Or someone moved it.\n\n*The scene shifts to the basement...*",
+        "image": "empty_grave.png",
+        "captionOfImage": "An empty muddy hole in the ground, rain filling it up, despair"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "basement_entry"
-        }
+        "extra_data": { "nextNodeId": "basement_entry" }
       }
     },
+
     "woods_burn": {
       "id": "woods_burn",
       "schema_version": 1,
       "type": "narrative",
       "title": "Ashes",
-      "tags": [
-        "arc-woods"
-      ],
+      "tags": ["arc-woods"],
       "public_embed": {
         "title": "🔥 Ashes to Ashes",
-        "description": "The fire catches. The effigies scream as the sap boils. It sounds human.\n\nHe turns his back on the grave. Some things are better left buried.\n\n*The scene shifts to the basement...*"
+        "description": "The fire catches. The effigies scream as the sap boils. It sounds human.\n\nHe turns his back on the grave. Some things are better left buried.\n\n*The scene shifts to the basement...*",
+        "image": "burning_effigies.png",
+        "captionOfImage": "Bonfire in the woods, distorting shadows, sparks flying up into the dark canopy"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "basement_entry"
-        }
+        "extra_data": { "nextNodeId": "basement_entry" }
       }
     },
+
     "basement_entry": {
       "id": "basement_entry",
       "schema_version": 1,
       "type": "narrative",
       "title": "The Archives",
-      "tags": [
-        "arc-basement",
-        "shared-view"
-      ],
+      "tags": ["arc-basement", "shared-view"],
       "public_embed": {
         "title": "🗄️ Paper Trails",
-        "description": "Meanwhile, the **Detective** and **Scholar** descend into the basement.\n\nIt smells of mildew and old secrets.\n\nThe Detective finds the ledger. It documents the bribes.\n\nBut the Scholar finds something else. A VHS tape labeled **\"Patient Session: The Detective - 2024\"**.\n\nThat was yesterday."
+        "description": "Meanwhile, the **Detective** and **Scholar** descend into the basement.\n\nIt smells of mildew and old secrets.\n\nThe Detective finds the ledger. It documents the bribes.\n\nBut the Scholar finds something else. A VHS tape labeled **\"Patient Session: The Detective - 2024\"**.\n\nThat was yesterday.",
+        "image": "vhs_stack.png",
+        "captionOfImage": "Stacks of old VHS tapes and rotting cardboard boxes, a single tape labeled clearly in marker"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "basement_watch"
-        }
+        "extra_data": { "nextNodeId": "basement_watch" }
       }
     },
+
     "basement_watch": {
       "id": "basement_watch",
       "schema_version": 1,
       "type": "choice",
       "title": "Play the Tape",
-      "tags": [
-        "arc-basement",
-        "shared-view"
-      ],
+      "tags": ["arc-basement", "shared-view"],
       "public_embed": {
         "title": "📺 To Play or Destroy?",
-        "description": "The Detective lunges for the tape. \"That's private!\"\n\nThe Scholar holds it back. \"Why were you recording sessions? Are you the leak?\""
+        "description": "The Detective lunges for the tape. \"That's private!\"\n\nThe Scholar holds it back. \"Why were you recording sessions? Are you the leak?\"",
+        "image": "hand_holding_tape.png",
+        "captionOfImage": "A hand clutching a VHS tape tightly, another hand reaching for it, conflict"
       },
       "type_specific": {
         "choices": [
@@ -277,10 +259,7 @@
             "label": "Watch the tape",
             "emoji": "👀",
             "style": 4,
-            "allowed_roles": [
-              "scholar",
-              "detective"
-            ],
+            "allowed_roles": ["scholar", "detective"],
             "nextNodeId": "basement_reveal"
           },
           {
@@ -288,95 +267,82 @@
             "label": "Destroy it unplayed",
             "emoji": "🔨",
             "style": 2,
-            "allowed_roles": [
-              "scholar",
-              "detective"
-            ],
+            "allowed_roles": ["scholar", "detective"],
             "nextNodeId": "basement_destroy"
           }
         ]
       }
     },
+
     "basement_reveal": {
       "id": "basement_reveal",
       "schema_version": 1,
       "type": "narrative",
       "title": "The Confession",
-      "tags": [
-        "arc-basement"
-      ],
+      "tags": ["arc-basement"],
       "public_embed": {
         "title": "📼 The Leak",
-        "description": "Static. Then the Detective's voice playing from the VCR.\n\n*\"I can't take the guilt anymore. I'm going to turn myself in. I'm going to take them all down with me.\"*\n\nThe Detective freezes. \"I... I was drunk.\"\n\nBut now the Scholar knows."
+        "description": "Static. Then the Detective's voice playing from the VCR.\n\n*\"I can't take the guilt anymore. I'm going to turn myself in. I'm going to take them all down with me.\"*\n\nThe Detective freezes. \"I... I was drunk.\"\n\nBut now the Scholar knows.",
+        "image": "static_tv_screen.png",
+        "captionOfImage": "Old CRT TV screen showing static noise in a dark room"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "midpoint_reunion"
-        }
+        "extra_data": { "nextNodeId": "midpoint_reunion" }
       }
     },
+
     "basement_destroy": {
       "id": "basement_destroy",
       "schema_version": 1,
       "type": "narrative",
       "title": "Blind Eye",
-      "tags": [
-        "arc-basement"
-      ],
+      "tags": ["arc-basement"],
       "public_embed": {
         "title": "🙈 Ignorance is Bliss",
-        "description": "The Scholar smashes the tape. Spools of magnetic ribbon spill out like guts.\n\n\"We're a team,\" the Scholar says smoothly. \"I protect your secrets. You protect mine.\""
+        "description": "The Scholar smashes the tape. Spools of magnetic ribbon spill out like guts.\n\n\"We're a team,\" the Scholar says smoothly. \"I protect your secrets. You protect mine.\"",
+        "image": "smashed_tape.png",
+        "captionOfImage": "Tangled magnetic tape on a concrete floor, destroyed plastic pieces"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "midpoint_reunion"
-        }
+        "extra_data": { "nextNodeId": "midpoint_reunion" }
       }
     },
+
     "midpoint_reunion": {
       "id": "midpoint_reunion",
       "schema_version": 1,
       "type": "narrative",
       "title": "Regroup",
-      "tags": [
-        "reunion",
-        "all-players"
-      ],
+      "tags": ["reunion", "all-players"],
       "public_embed": {
         "title": "🥃 Drink Up",
-        "description": "Everyone converges in the living room.\n\nThe Criminal is covered in mud. The Detective looks pale.\n\nSuddenly, the power cuts. The generator out back has died.\n\n\"I'll fix it,\" the Criminal growls. He heads out the back door.\n\"I need my meds,\" the Scholar mutters, heading to the bathroom.\n\nThe Detective is left alone in the dark."
+        "description": "Everyone converges in the living room.\n\nThe Criminal is covered in mud. The Detective looks pale.\n\nSuddenly, the power cuts. The generator out back has died.\n\n\"I'll fix it,\" the Criminal growls. He heads out the back door.\n\"I need my meds,\" the Scholar mutters, heading to the bathroom.\n\nThe Detective is left alone in the dark.",
+        "image": "power_out.png",
+        "captionOfImage": "Pitch black room with only the glowing embers of a cigarette visible"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "complex_split"
-        }
+        "extra_data": { "nextNodeId": "complex_split" }
       }
     },
+
     "complex_split": {
       "id": "complex_split",
       "schema_version": 1,
       "type": "arc_split",
       "title": "Fracture",
-      "tags": [
-        "arc-split",
-        "major-branch"
-      ],
+      "tags": ["arc-split", "major-branch"],
       "public_embed": {
         "title": "⚡ The Fracture",
         "description": "Chaos reigns. The group splinters.\n\n**The Criminal:** Goes to check the generator.\n**The Scholar:** Goes to find pills.\n**The Detective:** Left with his thoughts.",
+        "image": "shattered_glass_trippy.png",
+        "captionOfImage": "Image fractured into three shards, each showing a different nightmare scenario",
         "fields": [
-          {
-            "name": "⚙️ The Box",
-            "value": "Criminal (Solo). Survival Horror."
-          },
+          { "name": "⚙️ The Box", "value": "Criminal (Solo). Survival Horror." },
           {
             "name": "💊 The Trip",
             "value": "Scholar (Solo). Psychological Horror."
           },
-          {
-            "name": "🔫 The Choice",
-            "value": "Detective (Solo). Moral Dilemma."
-          }
+          { "name": "🔫 The Choice", "value": "Detective (Solo). Moral Dilemma." }
         ]
       },
       "type_specific": {
@@ -390,9 +356,7 @@
               "description": "Survive the trap",
               "player_count": 1,
               "entry_node_id": "fixer_trap",
-              "required_roles": [
-                "criminal"
-              ]
+              "required_roles": ["criminal"]
             },
             {
               "id": "solo_scholar",
@@ -400,9 +364,7 @@
               "description": "Face your mind",
               "player_count": 1,
               "entry_node_id": "fixer_trap",
-              "required_roles": [
-                "scholar"
-              ]
+              "required_roles": ["scholar"]
             },
             {
               "id": "solo_detective",
@@ -410,110 +372,92 @@
               "description": "Make the call",
               "player_count": 1,
               "entry_node_id": "fixer_trap",
-              "required_roles": [
-                "detective"
-              ]
+              "required_roles": ["detective"]
             }
           ]
         }
       }
     },
+
     "fixer_trap": {
       "id": "fixer_trap",
       "schema_version": 1,
       "type": "timed",
       "title": "The Box",
-      "tags": [
-        "solo-arc",
-        "criminal",
-        "shared-view"
-      ],
+      "tags": ["solo-arc", "criminal", "shared-view"],
       "public_embed": {
         "title": "📦 The Punishment Box",
         "description": "Outside, the **Criminal** is hit hard. WHAM.\n\nHe wakes up crammed into a wooden box. Buried alive. A breathing tube sticks up.\n\nThis is the old punishment box. The air is running out.",
+        "image": "buried_alive.png",
+        "captionOfImage": "First person view of wooden planks inches from face, dirt falling through cracks, claustrophobic",
         "footer": "Criminal must act now!"
       },
       "type_specific": {
-        "timers": {
-          "duration_seconds": 15
-        },
+        "timers": { "duration_seconds": 15 },
         "choices": [
           {
             "id": "break_finger",
             "label": "Dislocate thumb to slip cuffs (Criminal)",
-            "allowed_roles": [
-              "criminal"
-            ],
+            "allowed_roles": ["criminal"],
             "nextNodeId": "fixer_escape"
           },
           {
             "id": "scream",
             "label": "Scream for help (Criminal)",
-            "allowed_roles": [
-              "criminal"
-            ],
+            "allowed_roles": ["criminal"],
             "nextNodeId": "fixer_trapped"
           }
         ],
-        "outcome_rules": {
-          "on_all_inputs_or_timeout": {
-            "compute": "first"
-          }
-        }
+        "outcome_rules": { "on_all_inputs_or_timeout": { "compute": "first" } }
       }
     },
+
     "fixer_escape": {
       "id": "fixer_escape",
       "schema_version": 1,
       "type": "narrative",
       "title": "Pain",
-      "tags": [
-        "solo-arc",
-        "criminal"
-      ],
+      "tags": ["solo-arc", "criminal"],
       "public_embed": {
         "title": "🩸 Freedom hurts",
-        "description": "SNAP. The pain is blinding. But his hand slides free.\n\nThe Criminal claws his way out of the dirt, gasping for air.\n\nHe's alive. And he knows who put him there."
+        "description": "SNAP. The pain is blinding. But his hand slides free.\n\nThe Criminal claws his way out of the dirt, gasping for air.\n\nHe's alive. And he knows who put him there.",
+        "image": "muddy_hand_emergence.png",
+        "captionOfImage": "A bloody hand bursting out of grave soil into the moonlight"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "shrink_trip"
-        }
+        "extra_data": { "nextNodeId": "shrink_trip" }
       }
     },
+
     "fixer_trapped": {
       "id": "fixer_trapped",
       "schema_version": 1,
       "type": "narrative",
       "title": "Silence",
-      "tags": [
-        "solo-arc",
-        "criminal"
-      ],
+      "tags": ["solo-arc", "criminal"],
       "public_embed": {
         "title": "☠️ No One is Coming",
         "description": "He screams until his throat bleeds. No one comes.\n\nThe air gets thin.\n\nThe Criminal passes out, buried in the dark.",
+        "image": "darkness.png",
+        "captionOfImage": "Total black screen",
         "color": 0
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "shrink_trip"
-        }
+        "extra_data": { "nextNodeId": "shrink_trip" }
       }
     },
+
     "shrink_trip": {
       "id": "shrink_trip",
       "schema_version": 1,
       "type": "choice",
       "title": "The Yellow King",
-      "tags": [
-        "solo-arc",
-        "scholar",
-        "shared-view"
-      ],
+      "tags": ["solo-arc", "scholar", "shared-view"],
       "public_embed": {
         "title": "💊 The Dosage",
         "description": "In the bathroom, the **Scholar** reaches for pills. But the bottle is wrong. The label says **\"TRUTH\"**.\n\nA hallucination takes hold.\n\nThe walls start to breathe. The Scholar sees HIM. The Pale King, standing in the mirror.",
+        "image": "mirror_hallucination.png",
+        "captionOfImage": "A face in a mirror that isn't yours, wearing a yellow crown, distorted reality",
         "footer": "Scholar's Turn"
       },
       "type_specific": {
@@ -522,74 +466,65 @@
             "id": "wear_mask",
             "label": "Put on the Mask (Ascend)",
             "style": 4,
-            "allowed_roles": [
-              "scholar"
-            ],
+            "allowed_roles": ["scholar"],
             "nextNodeId": "shrink_ascend"
           },
           {
             "id": "shatter_mirror",
             "label": "Smash the Mirror (Reject)",
             "style": 2,
-            "allowed_roles": [
-              "scholar"
-            ],
+            "allowed_roles": ["scholar"],
             "nextNodeId": "shrink_deny"
           }
         ]
       }
     },
+
     "shrink_ascend": {
       "id": "shrink_ascend",
       "schema_version": 1,
       "type": "narrative",
       "title": "Awakened",
-      "tags": [
-        "solo-arc",
-        "scholar"
-      ],
+      "tags": ["solo-arc", "scholar"],
       "public_embed": {
         "title": "👑 Analysis Complete",
-        "description": "They put on the mask. Suddenly, the world makes sense.\n\nTime is a flat circle. They've done this before. They'll do it again.\n\nThe Scholar giggles. It's a hungry sound."
+        "description": "They put on the mask. Suddenly, the world makes sense.\n\nTime is a flat circle. They've done this before. They'll do it again.\n\nThe Scholar giggles. It's a hungry sound.",
+        "image": "yellow_sign.png",
+        "captionOfImage": "Abstract spiral symbol glowing yellow on a black background"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "detective_choice"
-        }
+        "extra_data": { "nextNodeId": "detective_choice" }
       }
     },
+
     "shrink_deny": {
       "id": "shrink_deny",
       "schema_version": 1,
       "type": "narrative",
       "title": "Sobering",
-      "tags": [
-        "solo-arc",
-        "scholar"
-      ],
+      "tags": ["solo-arc", "scholar"],
       "public_embed": {
         "title": "🧠 Clarity",
-        "description": "Smash. Glass flies.\n\nThe hallucination ends. The Scholar is bleeding, but sane.\n\nThey know what needs to be done."
+        "description": "Smash. Glass flies.\n\nThe hallucination ends. The Scholar is bleeding, but sane.\n\nThey know what needs to be done.",
+        "image": "broken_mirror_shard.png",
+        "captionOfImage": "Shard of mirror reflecting a frightened eye"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "detective_choice"
-        }
+        "extra_data": { "nextNodeId": "detective_choice" }
       }
     },
+
     "detective_choice": {
       "id": "detective_choice",
       "schema_version": 1,
       "type": "choice",
       "title": "The Call",
-      "tags": [
-        "solo-arc",
-        "detective",
-        "shared-view"
-      ],
+      "tags": ["solo-arc", "detective", "shared-view"],
       "public_embed": {
         "title": "📞 The Badge",
         "description": "Inside, the **Detective** stares at his badge. He could end this now. Call his precinct.\n\nOr he could trust his team.\n\n**Internal Monologue:** \"They're damaged goods. But they're YOUR damaged goods.\"",
+        "image": "badge_on_table.png",
+        "captionOfImage": "A tarnished police badge sitting on a table under a single lightbulb",
         "footer": "Detective decides"
       },
       "type_specific": {
@@ -598,55 +533,49 @@
             "id": "betray",
             "label": "Prepare to arrest them",
             "style": 4,
-            "allowed_roles": [
-              "detective"
-            ],
+            "allowed_roles": ["detective"],
             "nextNodeId": "final_reunion"
           },
           {
             "id": "loyal",
             "label": "Throw the badge away",
             "style": 1,
-            "allowed_roles": [
-              "detective"
-            ],
+            "allowed_roles": ["detective"],
             "nextNodeId": "final_reunion"
           }
         ]
       }
     },
+
     "final_reunion": {
       "id": "final_reunion",
       "schema_version": 1,
       "type": "narrative",
       "title": "The Standoff",
-      "tags": [
-        "reunion",
-        "all-players"
-      ],
+      "tags": ["reunion", "all-players"],
       "public_embed": {
         "title": "🔫 The Pale King Arrives",
         "description": "The team reassembles in the main hall. Muddy. Bleeding. High.\n\nThe front door opens. A figure steps in wearing the antlered mask of the Pale King.\n\nHe takes off the mask.\n\nIt's **Father Blackwood**. The dead cult leader. He didn't die. He's been waiting.",
+        "image": "pale_king_unmasked.png",
+        "captionOfImage": "A gaunt old man holding a terrifying deer-skull mask, framed by lightning",
         "footer": "The Logic of Dreams"
       },
       "type_specific": {
-        "extra_data": {
-          "nextNodeId": "climax_choice"
-        }
+        "extra_data": { "nextNodeId": "climax_choice" }
       }
     },
+
     "climax_choice": {
       "id": "climax_choice",
       "schema_version": 1,
       "type": "choice",
       "title": "The End",
-      "tags": [
-        "climax",
-        "ending"
-      ],
+      "tags": ["climax", "ending"],
       "public_embed": {
         "title": "🔚 The Final Choice",
         "description": "**Father Blackwood:** \"My children. You've suffered enough. Join me again, or die like dogs.\"\n\n**The Detective** raises his gun.\n**The Scholar** whispers a prayer.\n**The Criminal** tightens his fist.",
+        "image": "standoff_gun.png",
+        "captionOfImage": "First person view of a revolver barrel aimed at the old man, hands shaking",
         "footer": "Decide your fate"
       },
       "type_specific": {
@@ -672,46 +601,46 @@
         ]
       }
     },
+
     "ending_detective": {
       "id": "ending_detective",
       "schema_version": 1,
       "type": "narrative",
       "title": "True Detective",
-      "tags": [
-        "ending",
-        "good"
-      ],
+      "tags": ["ending", "good"],
       "public_embed": {
         "title": "🚬 The Tax Man",
-        "description": "BANG.\n\nBlackwood drops. The Detective smokes the barrel.\n\n\"Debt paid,\" he says.\n\nYou burn the lodge down. You walk away. The darkness is still there, but you're not carrying it alone anymore.\n\n**Ending: The Clean Slate**"
+        "description": "BANG.\n\nBlackwood drops. The Detective smokes the barrel.\n\n\"Debt paid,\" he says.\n\nYou burn the lodge down. You walk away. The darkness is still there, but you're not carrying it alone anymore.\n\n**Ending: The Clean Slate**",
+        "image": "burning_lodge_walking_away.png",
+        "captionOfImage": "Three figures walking away from a massive inferno, backs to the camera, slow motion style"
       }
     },
+
     "ending_cult": {
       "id": "ending_cult",
       "schema_version": 1,
       "type": "narrative",
       "title": "Carcosa",
-      "tags": [
-        "ending",
-        "bad"
-      ],
+      "tags": ["ending", "bad"],
       "public_embed": {
         "title": "👑 Long Live The King",
-        "description": "BANG. BANG. BANG.\n\nBodies hit the floor. The Survivor kneels.\n\nFather Blackwood smiles. \"Welcome home.\"\n\nTime is a flat circle.\n\n**Ending: The New Circle**"
+        "description": "BANG. BANG. BANG.\n\nBodies hit the floor. The Survivor kneels.\n\nFather Blackwood smiles. \"Welcome home.\"\n\nTime is a flat circle.\n\n**Ending: The New Circle**",
+        "image": "blood_on_floor.png",
+        "captionOfImage": "Pools of blood on wooden floorboards forming a ritual symbol"
       }
     },
+
     "ending_prison": {
       "id": "ending_prison",
       "schema_version": 1,
       "type": "narrative",
       "title": "Justice",
-      "tags": [
-        "ending",
-        "neutral"
-      ],
+      "tags": ["ending", "neutral"],
       "public_embed": {
         "title": "⚖️ The Truth",
-        "description": "You drop the guns. You call the cops.\n\nYou all go to jail. For a long time.\n\nBut for the first time in 15 years... you sleep soundly.\n\n**Ending: Penance**"
+        "description": "You drop the guns. You call the cops.\n\nYou all go to jail. For a long time.\n\nBut for the first time in 15 years... you sleep soundly.\n\n**Ending: Penance**",
+        "image": "jail_bars_light.png",
+        "captionOfImage": "Sunlight streaming through iron bars, peaceful dust motes"
       }
     }
   }
