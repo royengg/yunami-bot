@@ -56,7 +56,7 @@ Start the adventure. We recommend **"The Pale King's Wake"** for the full experi
 
 ## 🧩 Current Stories
 
-### 🕯️ The Pale King's Wake (3 Players)
+### 🕯️ The Pale King's Wake (3 Players) - Episode 1
 *Horror / Mystery*
 Fifteen years ago, you buried a body in the Louisiana bayou. Now, someone knows. You must return to the scene of the crime to destroy the evidence before the police—or something worse—finds it.
 
@@ -66,5 +66,5 @@ Fifteen years ago, you buried a body in the Louisiana bayou. Now, someone knows.
 
 ---
 
-*Built for the Discord App App Hackathon 2024.*
+*Built for the Discord Buildathon 2025.*
 *Ready to play? Invite Yunami and start your story.* ✨
