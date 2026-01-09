@@ -87,10 +87,9 @@ export async function execute(interaction: any) {
 
 function getRoleDisplay(role: string): string {
   const roles: Record<string, string> = {
-    scout: '🔍 Scout',
-    leader: '👑 Leader',
-    healer: '💚 Healer',
-    warrior: '⚔️ Warrior',
+    detective: '🕵️ The Detective',
+    criminal: '🔪 The Criminal',
+    scholar: '📚 The Scholar',
   };
   return roles[role] || role;
 }

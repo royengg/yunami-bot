@@ -10,6 +10,7 @@ import {
   getVote,
   recordVote,
   isTimerExpired,
+  getPartyRole,
 } from '../quickstart/runtime-graph.js';
 import { getPartyByPlayer, getPartyMessage, setPartyMessage } from '../quickstart/party-session.js';
 import { renderNodeWithContext } from '../engine/dispatcher.js';
@@ -111,7 +112,30 @@ export const handler = {
         });
         return;
       }
-    } else if (isChoiceLocked(odId, nodeId, choiceId)) {
+    } 
+    
+    // Strict Role Validation
+    if (choice.allowed_roles && choice.allowed_roles.length > 0) {
+        // Fallback to party context if session role is missing (same logic as builder)
+        let playerRole = getPartyRole(odId);
+        if (!playerRole && party) {
+            const member = party.players.find(p => p.odId === odId);
+            playerRole = member?.role;
+        }
+
+        const normalizedPlayerRole = playerRole?.toLowerCase().trim();
+        const normalizedAllowed = choice.allowed_roles.map(r => r.toLowerCase().trim());
+
+        if (!normalizedPlayerRole || !normalizedAllowed.includes(normalizedPlayerRole)) {
+            await interaction.reply({
+                content: `🛑 You cannot make this choice. Required role: **${normalizedAllowed.join(', ').toUpperCase()}**`,
+                flags: MessageFlags.Ephemeral,
+            });
+            return;
+        }
+    }
+
+    if (!isTimedNode && isChoiceLocked(odId, nodeId, choiceId)) {
       await interaction.reply({
         content: 'You have already made this choice.',
         flags: MessageFlags.Ephemeral,

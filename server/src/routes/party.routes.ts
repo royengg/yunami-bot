@@ -129,9 +129,8 @@ router.post("/:partyId/role", async (req: Request, res: Response) => {
       return;
     }
     
-    const validRoles = ["scout", "leader", "healer", "warrior"];
-    if (!role || !validRoles.includes(role)) {
-      res.status(400).json({ error: "Invalid role. Must be: scout, leader, healer, warrior" });
+    if (!role) {
+      res.status(400).json({ error: "Role is required" });
       return;
     }
     

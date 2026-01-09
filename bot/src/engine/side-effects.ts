@@ -41,12 +41,15 @@ async function sendDMDeliveries(
   for (const delivery of dmDeliveries) {
     const recipientRole = delivery.recipient_role;
     const recipients = findPlayersWithRole(recipientRole, playerId, party, arcId);
+    console.log(`[SideEffects] Sending DM to role=${recipientRole}, recipients=${recipients.length}`);
+    
     for (const recipientId of recipients) {
       try {
         const user = await client.users.fetch(recipientId);
         await user.send(delivery.content.text);
+        console.log(`[SideEffects] Sent DM to ${recipientId}`);
       } catch (error) {
-        console.error(`Failed to send DM to ${recipientId}:`, error);
+        console.error(`[SideEffects] Failed to send DM to ${recipientId}:`, error);
       }
     }
   }
@@ -59,8 +62,8 @@ function findPlayersWithRole(
 ): string[] {
   const recipients: string[] = [];
   if (!party || party.status !== 'active') {
-    const playerRole = getPartyRole(currentPlayerId);
-    if (playerRole === role) {
+    const playerRole = getPartyRole(currentPlayerId)?.toLowerCase().trim();
+    if (playerRole === role.toLowerCase().trim()) {
       recipients.push(currentPlayerId);
     }
     return recipients;
@@ -72,8 +75,8 @@ function findPlayersWithRole(
     playerPool = party.players.map(p => p.odId);
   }
   for (const playerId of playerPool) {
-    const playerRole = getPartyRole(playerId);
-    if (playerRole === role) {
+    const playerRole = getPartyRole(playerId)?.toLowerCase().trim();
+    if (playerRole === role.toLowerCase().trim()) {
       recipients.push(playerId);
     }
   }

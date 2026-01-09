@@ -52,8 +52,21 @@ export const handler = {
       if (result.attachment) {
         payload.files = [result.attachment];
       }
-      const reply = await interaction.editReply(payload);
-      setActiveMessage(odId, reply.channelId, reply.id);
+      
+      // Update the ephemeral "Create Profile" message to indicate success
+      await interaction.editReply({ 
+        content: '✅ Profile created! Your story begins below.',
+        embeds: [],
+        components: []
+      });
+
+      // Send the prologue as a new PUBLIC message
+      const publicReply = await interaction.followUp({
+        ...payload,
+        ephemeral: false
+      });
+
+      setActiveMessage(odId, publicReply.channelId, publicReply.id);
     } catch (error) {
       console.error(error);
     }

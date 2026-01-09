@@ -43,14 +43,18 @@ export async function buildNarrativeNode(
   const resolvedNextId =
     nextNodeId ?? node.type_specific?.extra_data?.nextNodeId;
   
-  // Only party leader can press Continue in multiplayer
-  // In solo play (no party), anyone can continue
-  let isLeader = true;
-  if (context?.party && context.party.status === 'active' && context.playerId) {
-    isLeader = context.party.ownerId === context.playerId;
-  }
+  // In Shared Screen mode (active party), the button must be visible to everyone.
+  // The handler (engine-continue.ts) enforces that only the leader can actually use it.
+  // If we hide it here based on context.playerId, a re-render triggered by a non-leader will hide it for everyone.
+  let showButton = true;
+  
+  // Debug log to confirm build context
+  if (context?.party && context.party.status === 'active') {
+    // console.log(`[NarrativeBuilder] Building for shared screen. Owner=${context.party.ownerId}, Viewer=${context.playerId}. Showing button regardless of role.`);
+    showButton = true;
+  } 
 
-  if (resolvedNextId && isLeader) {
+  if (resolvedNextId && showButton) {
     components = [
       new ActionRowBuilder<ButtonBuilder>().addComponents(
         new ButtonBuilder()

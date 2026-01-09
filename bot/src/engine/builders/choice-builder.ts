@@ -94,14 +94,40 @@ function buildChoiceButtons(
   let currentRow = new ActionRowBuilder<ButtonBuilder>();
   let buttonCount = 0;
 
-  // Get player's role for filtering
-  const playerRole = getPartyRole(context.playerId);
+  // Get player's role for filtering, preferring party context if available
+  let playerRole = getPartyRole(context.playerId);
+  if (!playerRole && context.party) {
+      const member = context.party.players.find(p => p.odId === context.playerId);
+      playerRole = member?.role;
+  }
 
   for (const choice of choices) {
-    // If allowed_roles is specified, skip if player's role is not in the list
+    // If allowed_roles is specified, check if the choice should be shown
     if (choice.allowed_roles && choice.allowed_roles.length > 0) {
-      if (!playerRole || !choice.allowed_roles.includes(playerRole)) {
-        continue; // Hide button for this player
+      const normalizedAllowed = choice.allowed_roles.map(r => r.toLowerCase().trim());
+      let visible = false;
+
+      // 1. Check current player (primary check)
+      const normalizedPlayerRole = playerRole?.toLowerCase().trim();
+      if (normalizedPlayerRole && normalizedAllowed.includes(normalizedPlayerRole)) {
+        visible = true;
+      }
+
+      // 2. If valid party (Shared Screen), check if ANY member has the role
+      // This ensures the button appears on the shared message even if the Builder doesn't have the role.
+      if (!visible && context.party && context.party.status === 'active') {
+        const hasQualifiedMember = context.party.players.some(p => {
+            const r = (p.role || getPartyRole(p.odId))?.toLowerCase().trim();
+            return r && normalizedAllowed.includes(r);
+        });
+        if (hasQualifiedMember) {
+            visible = true;
+        }
+      }
+
+      if (!visible) {
+        // console.log(`[ChoiceBuilder] Hiding choice ${choice.id} - Requirement not met by player or party.`);
+        continue; 
       }
     }
 

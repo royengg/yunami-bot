@@ -43,12 +43,13 @@ export async function buildTimedNode(
   if (publicEmbed?.description) embed.setDescription(publicEmbed.description);
   if (timer?.duration_seconds) {
     const expiryTime = Math.floor(Date.now() / 1000) + timer.duration_seconds;
-    embed.setFooter({ text: `⏱️ Expires: ` });
+    // embed.setFooter({ text: `⏱️ Expires: ` });
     embed.setDescription(
       (publicEmbed?.description || '') +
         `\n\n⏱️ Time remaining: <t:${expiryTime}:R>`
     );
-    if (!isPlayerInSoloArc(context.party?.id, context.playerId)) {
+    // Always start timer if configured (deduplication handled by runtime-graph)
+    if (context.party?.id || context.playerId) {
       startTimer(
         context.playerId,
         `${context.nodeId}:timer`,
@@ -115,14 +116,38 @@ function buildChoiceButtons(
   let currentRow = new ActionRowBuilder<ButtonBuilder>();
   let buttonCount = 0;
 
-  // Get player's role for filtering
-  const playerRole = getPartyRole(context.playerId);
+  // Get player's role for filtering, preferring party context if available
+  let playerRole = getPartyRole(context.playerId);
+  if (!playerRole && context.party) {
+      const member = context.party.players.find(p => p.odId === context.playerId);
+      playerRole = member?.role;
+  }
 
   for (const choice of choices) {
-    // If allowed_roles is specified, skip if player's role is not in the list
+    // If allowed_roles is specified, check if the choice should be shown
     if (choice.allowed_roles && choice.allowed_roles.length > 0) {
-      if (!playerRole || !choice.allowed_roles.includes(playerRole)) {
-        continue; // Hide button for this player
+      const normalizedAllowed = choice.allowed_roles.map(r => r.toLowerCase().trim());
+      let visible = false;
+
+      // 1. Check current player
+      const normalizedPlayerRole = playerRole?.toLowerCase().trim();
+      if (normalizedPlayerRole && normalizedAllowed.includes(normalizedPlayerRole)) {
+        visible = true;
+      }
+
+      // 2. If valid party (Shared Screen), check if ANY member has the role
+      if (!visible && context.party && context.party.status === 'active') {
+        const hasQualifiedMember = context.party.players.some(p => {
+            const r = (p.role || getPartyRole(p.odId))?.toLowerCase().trim();
+            return r && normalizedAllowed.includes(r);
+        });
+        if (hasQualifiedMember) {
+            visible = true;
+        }
+      }
+
+      if (!visible) {
+        continue; 
       }
     }
 
@@ -203,8 +228,8 @@ function partyHasRole(
     return false;
   }
   for (const player of party.players) {
-    const playerRole = getPartyRole(player.odId);
-    if (playerRole === role) {
+    const playerRole = getPartyRole(player.odId)?.toLowerCase().trim();
+    if (playerRole === role.toLowerCase().trim()) {
       return true;
     }
   }

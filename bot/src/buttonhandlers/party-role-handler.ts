@@ -9,10 +9,9 @@ import { mapRemotePartyToLocal } from '../quickstart/party-session.js';
 import * as api from '../api/client.js';
 
 const AVAILABLE_ROLES = [
-  { id: 'scout', label: 'Scout', emoji: '🔍' },
-  { id: 'leader', label: 'Leader', emoji: '👑' },
-  { id: 'healer', label: 'Healer', emoji: '💚' },
-  { id: 'warrior', label: 'Warrior', emoji: '⚔️' },
+  { id: 'detective', label: 'The Detective', emoji: '🕵️' },
+  { id: 'criminal', label: 'The Criminal', emoji: '🔪' },
+  { id: 'scholar', label: 'The Scholar', emoji: '📚' },
 ];
 
 export const handler = {
@@ -63,6 +62,10 @@ export const handler = {
     }
     
     const party = mapRemotePartyToLocal(partyResponse.data.party);
+    // Sync to local cache so /party-lobby command uses fresh data
+    const { restorePartySession } = await import('../quickstart/party-session.js');
+    restorePartySession(party);
+
     const maxSize = party.maxSize || 4;
     
     if (party.status !== 'waiting' && party.status !== 'forming') {
@@ -72,10 +75,9 @@ export const handler = {
     
     const getRoleDisplay = (role: string): string => {
         const roles: Record<string, string> = {
-          scout: '🔍 Scout',
-          leader: '👑 Leader',
-          healer: '💚 Healer',
-          warrior: '⚔️ Warrior',
+          detective: '🕵️ The Detective',
+          criminal: '🔪 The Criminal',
+          scholar: '📚 The Scholar',
         };
         return roles[role] || role || '⬜ No role';
     };

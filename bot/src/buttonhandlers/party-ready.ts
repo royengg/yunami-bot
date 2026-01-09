@@ -57,14 +57,17 @@ export const handler = {
     }
     
     const party = mapRemotePartyToLocal(partyResponse.data.party);
+    // Sync to local cache so /party-lobby command uses fresh data
+    const { restorePartySession } = await import('../quickstart/party-session.js');
+    restorePartySession(party);
+
     const maxSize = party.maxSize || 4;
     
     const getRoleDisplay = (role: string): string => {
       const roles: Record<string, string> = {
-        scout: '🔍 Scout',
-        leader: '👑 Leader',
-        healer: '💚 Healer',
-        warrior: '⚔️ Warrior',
+        detective: '🕵️ The Detective',
+        criminal: '🔪 The Criminal',
+        scholar: '📚 The Scholar',
       };
       return roles[role] || role || '⬜ No role';
     };

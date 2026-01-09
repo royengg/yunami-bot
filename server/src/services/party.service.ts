@@ -25,7 +25,7 @@ export async function createParty(input: CreatePartyInput): Promise<Party> {
       members: {
         create: {
           userId: input.leaderId,
-          isReady: true, 
+          isReady: false, 
         },
       },
     },

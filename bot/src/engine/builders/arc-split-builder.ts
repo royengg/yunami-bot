@@ -52,8 +52,9 @@ export async function buildArcSplitNode(
     for (const arc of arcSplitConfig.arcs) {
       // Find players with required roles for this arc
       const assignedPlayers = context.party.players.filter(p => {
-        const playerRole = p.role || getPartyRole(p.odId);
-        return arc.required_roles?.includes(playerRole || '') ?? false;
+        const playerRole = (p.role || getPartyRole(p.odId))?.toLowerCase().trim();
+        const requiredRoles = arc.required_roles?.map(r => r.toLowerCase().trim()) || [];
+        return requiredRoles.includes(playerRole || '');
       });
       
       if (assignedPlayers.length > 0) {
@@ -75,14 +76,21 @@ export async function buildArcSplitNode(
     embed.setFooter({ text: 'Private briefings have been sent to team members' });
   }
 
-  // Only party leader can press Continue
-  const isLeader = context.party.ownerId === context.playerId;
-  
-  // Get next node from the config (merge_node_id is where everyone goes)
+  // Get next node from the config
   const nextNodeId = arcSplitConfig?.merge_node_id || node.type_specific?.extra_data?.nextNodeId;
-  
   let components: ActionRowBuilder<ButtonBuilder>[] | null = null;
-  if (nextNodeId && isLeader) {
+
+  // In Shared Screen mode (active party), the button must be visible to everyone.
+  // The handler (engine-continue.ts) enforces that only the leader can actually use it.
+  // If we hide it here based on context.playerId, a re-render triggered by a non-leader will hide it for everyone.
+  let showButton = true;
+  
+  // Debug log to confirm build context
+  if (context.party && context.party.status === 'active') {
+    showButton = true;
+  }
+
+  if (nextNodeId && showButton) {
     components = [
       new ActionRowBuilder<ButtonBuilder>().addComponents(
         new ButtonBuilder()

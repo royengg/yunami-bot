@@ -26,7 +26,7 @@ export function createParty(
         odId: ownerId,
         username: ownerUsername,
         joinedAt: new Date(),
-        isReady: true,
+        isReady: false,
       },
     ],
     status: 'waiting',
@@ -236,6 +236,12 @@ export function mapRemotePartyToLocal(remoteParty: any): MultiplayerSession {
     (m: any) => m.userId === remoteParty.leaderId
   );
   const ownerDiscordId = leaderMember?.user?.discordId || remoteParty.leaderId;
+  
+  // Debug log for ID mismatch
+  if (!leaderMember) {
+     console.warn(`[PartyMapping] Leader member not found! leaderId=${remoteParty.leaderId}`, remoteParty.members);
+  }
+  console.log(`[PartyMapping] Mapped party ${remoteParty.id}: Leader ${remoteParty.leaderId} -> Discord ${ownerDiscordId}`);
 
   return {
     id: remoteParty.id,

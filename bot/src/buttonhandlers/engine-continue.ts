@@ -48,6 +48,42 @@ export const handler = {
       });
       return;
     }
+
+    // Ensure Party is also restored for validation
+    let party = getPartyByPlayer(userId);
+    if (!party) {
+         try {
+             const partyRes = await api.getMyParty(userId);
+             if (partyRes.data?.party) {
+                 const restoredParty = mapRemotePartyToLocal(partyRes.data.party);
+                 restorePartySession(restoredParty);
+                 party = restoredParty as any;
+             }
+         } catch (e) {
+             console.error("Failed to restore party", e);
+         }
+    }
+
+    // Explicit Leader Check for Narrative/ArcSplit nodes in Multiplayer
+    // These nodes are "Leader Only". If a non-leader clicks, reject it.
+    // Do NOT proceed to re-render, as that would rebuild the view from the non-leader's perspective (hiding the button).
+    if (party && party.status === 'active') { // Shared screen mode
+        const currentNodeId = session.currentNodeId;
+        const currentNode = storyData.nodes?.[currentNodeId];
+        
+        // Narrative nodes and ArcSplits (that have a continue button) are Leader Only
+        // Other types like Choice/Timed handle their own allowed_roles logic
+        if (currentNode && (currentNode.type === 'narrative' || currentNode.type === 'arc_split')) {
+             if (party.ownerId !== userId) {
+                 await interaction.reply({
+                    content: '🛑 Only the Party Leader can advance the story.',
+                    flags: MessageFlags.Ephemeral
+                 });
+                 return;
+             }
+        }
+    }
+
     recordChoice(userId, `continue_${nextNodeId}`, nextNodeId);
     
     // Immediately disable buttons to prevent double-clicks
@@ -60,7 +96,7 @@ export const handler = {
     await interaction.editReply({ components: disabledComponents });
     
     // Ensure Party is also restored
-    let party = getPartyByPlayer(userId);
+    party = getPartyByPlayer(userId);
     if (!party) {
          try {
              const partyRes = await api.getMyParty(userId);
