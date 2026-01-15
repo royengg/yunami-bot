@@ -10,8 +10,10 @@ import {
   sessionRoutes,
 } from "./routes";
 import { errorHandler } from "./middleware/error";
+
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 app.use(express.json());
 app.get("/health", (req: Request, res: Response) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
