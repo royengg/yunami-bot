@@ -1,5 +1,4 @@
 import type { ArcDefinition, ArcSplitConfig } from './types.js';
-import { getPartyRole } from '../quickstart/runtime-graph.js';
 
 export interface ActiveArc {
   arcId: string;

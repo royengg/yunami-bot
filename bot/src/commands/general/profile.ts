@@ -10,7 +10,7 @@ import {
   SKRSContext2D,
 } from '@napi-rs/canvas';
 import path from 'path';
-import { ProfileData, createProfile } from '../../types/profiledata.js';
+import { ProfileData } from '../../types/profiledata.js';
 import * as api from '../../api/client.js';
 const fontsPath = path.resolve(process.cwd(), 'assets', 'fonts');
 try {

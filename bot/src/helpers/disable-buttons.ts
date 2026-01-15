@@ -1,4 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder, type AnyComponentBuilder } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder} from 'discord.js';
 
 /**
  * Disables all buttons in the current message components.

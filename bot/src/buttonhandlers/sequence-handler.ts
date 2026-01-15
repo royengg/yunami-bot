@@ -14,6 +14,7 @@ import {
   checkSequenceAnswer,
 } from '../engine/builders/sequence-builder.js';
 import { renderNodeWithContext } from '../engine/dispatcher.js';
+
 export const handler = {
   id: /^sequence:(.+):(.+)$/,
   async execute(interaction: any) {

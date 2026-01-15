@@ -1,7 +1,6 @@
 import {
   startPartyStory,
   getPartyByOwner,
-  getPartyByPlayer,
   mapRemotePartyToLocal,
   restorePartySession,
   setPartyMessage,

@@ -20,6 +20,7 @@ import {
   checkMemoryAnswer,
 } from '../engine/builders/memory-builder.js';
 import { renderNodeWithContext } from '../engine/dispatcher.js';
+
 export const handler = {
   id: /^memory:(.+):(.+)$/,
   async execute(interaction: any) {

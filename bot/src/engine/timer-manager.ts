@@ -1,5 +1,4 @@
 import {
-  getSession,
   isTimerExpired,
   clearTimer,
   recordChoice,
@@ -18,14 +17,17 @@ import {
 import { renderNodeWithContext } from './dispatcher.js';
 import { client } from '../index.js';
 import { TextChannel } from 'discord.js';
+
 type TimerCallback = (
   session: PlayerSession,
   nodeId: string,
   timerId: string
 ) => Promise<void>;
+
 let timerInterval: NodeJS.Timeout | null = null;
 let onTimerExpiredCallback: TimerCallback | null = null;
 const CHECK_INTERVAL_MS = 1000;
+
 export function startTimerManager(onExpired?: TimerCallback): void {
   if (timerInterval) {
     return;

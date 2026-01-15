@@ -1,8 +1,10 @@
 const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:3000";
+
 interface ApiResponse<T> {
   data?: T;
   error?: string;
 }
+
 async function request<T>(
   method: string,
   path: string,
@@ -28,18 +30,22 @@ async function request<T>(
     return { error: "Network error" };
   }
 }
+
 export async function register(discordId: string, username: string) {
   return request<{ message: string; user: any }>("POST", "/auth/register", discordId, {
     discordId,
     username,
   });
 }
+
 export async function getUser(discordId: string) {
   return request<{ user: any; progress: any[] }>("GET", "/user/me", discordId);
 }
+
 export async function startPrologue(discordId: string) {
   return request<{ message: string; progress: any }>("POST", "/prologue/start", discordId);
 }
+
 export async function submitPrologueChoice(
   discordId: string,
   nodeId: string,
@@ -52,6 +58,7 @@ export async function submitPrologueChoice(
     nextNodeId,
   });
 }
+
 export async function completePrologue(
   discordId: string,
   result: {
@@ -69,6 +76,7 @@ export async function completePrologue(
     result
   );
 }
+
 export async function listStories(discordId: string) {
   return request<{ stories: any[] }>("GET", "/stories", discordId);
 }

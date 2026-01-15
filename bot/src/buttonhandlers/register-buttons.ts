@@ -3,6 +3,7 @@ import { MessageFlags } from 'discord.js';
 import { registerEmbed } from '../components/embeds/register.js';
 import * as api from '../api/client.js';
 import { logger } from '../utils/logger.js';
+
 export const handler = {
   id: 'register',
   async execute(interaction: any) {

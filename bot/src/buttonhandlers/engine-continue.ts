@@ -3,7 +3,6 @@ import {
   getSession,
   recordChoice,
   setActiveMessage,
-  getActiveMessage,
 } from '../quickstart/runtime-graph.js';
 import { getPartyByPlayer, mapRemotePartyToLocal, restorePartySession, getPartyMessage, setPartyMessage } from '../quickstart/party-session.js';
 import { renderNodeWithContext } from '../engine/dispatcher.js';

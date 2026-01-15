@@ -4,6 +4,7 @@ import { storyGraph } from '../quickstart/story-graph.js';
 import { renderNode } from '../engine/dispatcher.js';
 import { initPrologueEvaluation, restoreFromChoices } from '../engine/prologue-evaluator.js';
 import * as api from '../api/client.js';
+
 export const handler = {
   id: 'createProfile',
   async execute(interaction: any) {
@@ -38,6 +39,7 @@ export const handler = {
       } else {
           initPrologueEvaluation(odId);
       }
+      
       const currentNode = data.nodes[startNodeId];
       if (!currentNode) {
         console.error('Node not found:', startNodeId);

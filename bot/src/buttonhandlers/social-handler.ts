@@ -9,6 +9,7 @@ import {
 import { getPartyByPlayer, getPartyMessage } from '../quickstart/party-session.js';
 import { renderNodeWithContext } from '../engine/dispatcher.js';
 import type { SocialApproach } from '../engine/types.js';
+
 export const handler = {
   id: /^social:(.+):(.+)$/,
   async execute(interaction: any) {

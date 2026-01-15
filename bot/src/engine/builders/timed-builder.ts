@@ -14,8 +14,6 @@ import {
   getSession,
 } from '../../quickstart/runtime-graph.js';
 import { getPartyByPlayer } from '../../quickstart/party-session.js';
-import { isPlayerInSoloArc } from '../arc-manager.js';
-import { buildProgressBar } from '../timer-progress.js';
 import type {
   StoryNode,
   BuilderResult,

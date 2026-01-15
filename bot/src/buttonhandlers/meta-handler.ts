@@ -6,6 +6,7 @@ import {
   isPrologueActive,
 } from '../engine/prologue-evaluator.js';
 import * as api from '../api/client.js';
+
 export const handler = {
   id: /^meta:(.+):(.+)$/,
   async execute(interaction: any) {

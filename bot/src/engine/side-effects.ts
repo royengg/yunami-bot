@@ -2,8 +2,9 @@ import type { StoryNode } from './types.js';
 import type { MultiplayerSession } from '../types/party.js';
 import { getSession, getPartyRole } from '../quickstart/runtime-graph.js';
 import { getPartyByPlayer } from '../quickstart/party-session.js';
-import { getPlayerArc, getArcPlayers } from './arc-manager.js';
+import {  getArcPlayers } from './arc-manager.js';
 import { client } from '../index.js';
+
 export async function executeSideEffects(
   node: StoryNode,
   playerId: string,

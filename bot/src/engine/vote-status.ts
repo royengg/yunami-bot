@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 import { getVoteSummary, type VoteSummary } from './outcome-engine.js';
-import type { Choice, StoryNode } from './types.js';
+import type { Choice} from './types.js';
 export function buildVoteStatusField(
   nodeId: string,
   choices: Choice[],

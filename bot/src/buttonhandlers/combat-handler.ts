@@ -21,6 +21,7 @@ import type {
   CombatEnemy,
   CombatState,
 } from '../engine/types.js';
+
 export const handler = {
   id: /^combat:(.+):(.+)$/,
   async execute(interaction: any) {

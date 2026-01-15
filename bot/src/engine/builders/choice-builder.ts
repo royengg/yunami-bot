@@ -21,11 +21,13 @@ import type {
   RoleReservedAction,
 } from '../types.js';
 import type { MultiplayerSession } from '../../types/party.js';
+
 export interface ChoiceBuilderContext {
   playerId: string;
   nodeId: string;
   party?: MultiplayerSession | null;
 }
+
 export async function buildChoiceNode(
   node: StoryNode,
   context: ChoiceBuilderContext
