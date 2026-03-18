@@ -1,4 +1,4 @@
-# 🎭 Yunami: The Multiplayer Role-Playing Bot
+# Yunami: The Multiplayer Role-Playing Bot
 
 **Your portal to interactive storytelling and anime-inspired adventures.**
 
@@ -8,30 +8,30 @@ It's not just a text game—it's a shared cinematic experience where you and you
 
 ---
 
-## 🔥 Features that Make it Special
+## Features that Make it Special
 
-### 🌍 A Multiverse of Stories
+### A Multiverse of Stories
 Yunami isn't just one game. It's an engine for *many* worlds.
 - **Mystery**: Solve cold cases where every player has a secret motive.
 - **Anime Battles**: Team up with classic archetypes (The Berserker, The Shadow, The Seeker) to fight bosses.
 - **Survival**: Split up to scavenge resources, hoping you all make it back.
 
-### 🕵️‍♀️ True Role-Playing
+### True Role-Playing
 You aren't just voting on options. You **are** your character.
 - **The Berserker** might have the option to *Kick Down the Door*.
 - **The Scholar** might have the option to *Decipher the Runes*.
 - **The Shadow** might see shortcuts that no one else can see.
 
-### 🤫 Secret Information
+### Secret Information
 While everyone looks at the main story in the channel, Yunami sends **private DMs** to specific players.
 > *"You notice the party leader is hiding a bite mark. Do you call them out?"*
 
-### 📺 Shared Screen Experience
+### Shared Screen Experience
 No more scrolling up and down. The story happens in **one single, updating message**. It feels like watching a movie together, but you control the plot.
 
 ---
 
-## 🎮 How to Play
+## How to Play
 
 ### 1. Create Your Profile
 Before you can join an adventure, you need an identity.
@@ -65,9 +65,9 @@ Start the adventure.
 
 ---
 
-## 🧩 Featured Episode
+## Featured Episode
 
-### 🕯️ The Pale King's Wake (Episode 1)
+### The Pale King's Wake (Episode 1)
 *Horror / Mystery*
 Fifteen years ago, you buried a body in the Louisiana bayou. Now, someone knows. You must return to the scene of the crime to destroy the evidence before the police—or something worse—finds it.
 
@@ -80,4 +80,4 @@ Fifteen years ago, you buried a body in the Louisiana bayou. Now, someone knows.
 ---
 
 *Built for the Discord Buildathon 2025.*
-*Ready to play? Invite Yunami and start your story.* ✨
+*Ready to play? Invite Yunami and start your story.*
